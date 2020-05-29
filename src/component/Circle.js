@@ -9,6 +9,7 @@ export default function Circle({ xy }) {
           <g key={i} onClick={() => console.log('you clicked me')}>
             <circle cx={x} cy={xy.y[i]} r={20} fill="#FFFF00" />
             <text
+              className="unselect"
               x={x}
               y={xy.y[i]}
               textAnchor="middle"
