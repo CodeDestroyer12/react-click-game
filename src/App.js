@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
 import Circle from './component/Circle';
-import './App.css';
 
 export default class App extends Component {
   state = {
     x: [],
     y: [],
-    r: null,
+    r: 2,
   };
   getXYR = () => {
     var x = [];
     var y = [];
     for (let i = 0; i < 5; i++) {
-      x = [...x, Math.floor(Math.random() * 300)];
-      y = [...y, Math.floor(Math.random() * 300)];
+      x = [...x, Math.floor(Math.random() * 600)];
+      y = [...y, Math.floor(Math.random() * 600)];
     }
     this.setState({
       x: x,
@@ -21,11 +20,15 @@ export default class App extends Component {
     });
   };
   render() {
+    const { x, y, r } = this.state;
     return (
-      <div className="App">
-        <button onClick={this.getXYR}>Play</button>
-
-        <Circle xy={this.state} />
+      <div className="container">
+        <button className="btn btn-red" onClick={this.getXYR}>
+          Play
+        </button>
+        <div className="center">
+          <Circle x={x} y={y} r={r} />
+        </div>
       </div>
     );
   }
