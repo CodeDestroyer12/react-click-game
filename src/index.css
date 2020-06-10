@@ -16,10 +16,6 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
-  /* 
-  font-weight: 400;
-  font-size: 1.6rem;
-  line-height: 1.7; */
 }
 
 .container {
@@ -96,6 +92,14 @@ body {
   background-color: palegreen;
   border-radius: 40px;
   border: 1px solid black;
+}
+
+.ball:hover > .unclicked {
+  fill: black;
+}
+
+.clicked {
+  fill: #3f3f3fa2;
 }
 
 .unselect {

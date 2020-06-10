@@ -1,12 +1,33 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 
-export default function Circle({ x, y, r }) {
+let a = 1;
+export default function Circle({ x, y, r, setGameOver }) {
+  const [gClass, setGClass] = useState();
+
+  const checkNum = (e, i) => {
+    if (i + 1 === a) {
+      console.log(a);
+      a += 1;
+      setGClass(i + 1);
+    } else if (i + 1 <= a) {
+      console.log('already clicked', a);
+    } else {
+      console.log('you lose', a);
+      setGameOver(true);
+    }
+  };
   return (
     <>
       <svg className="play-area">
         {x.map((x, i) => (
-          <g key={i} onClick={() => console.log('you clicked me')}>
-            <circle cx={x} cy={y[i]} r={30} fill="#FFFF00" />
+          <g className="ball" key={i} onClick={(e) => checkNum(e, i)}>
+            <circle
+              className={`crl  ${i + 1 <= gClass ? 'clicked' : 'unclicked'}`}
+              cx={x}
+              cy={y[i]}
+              r={r}
+              fill="#FFFF00"
+            />
             <text
               className="unselect"
               x={x}
