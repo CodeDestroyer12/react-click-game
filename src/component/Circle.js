@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 let a = 1;
-export default function Circle({ x, y, r, setGameOver }) {
+export default function Circle({ x, y, r, setGameStatus }) {
   const [gClass, setGClass] = useState();
 
   const checkNum = (e, i) => {
@@ -9,11 +9,16 @@ export default function Circle({ x, y, r, setGameOver }) {
       console.log(a);
       a += 1;
       setGClass(i + 1);
+      if (a === 6) {
+        a = 1;
+        setGameStatus('win');
+      }
     } else if (i + 1 <= a) {
       console.log('already clicked', a);
     } else {
       console.log('you lose', a);
-      setGameOver(true);
+      a = 1;
+      setGameStatus('lose');
     }
   };
   return (

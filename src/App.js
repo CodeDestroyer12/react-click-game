@@ -6,7 +6,8 @@ export default function App() {
   const [y, setY] = useState([]);
   const [r, setR] = useState(20);
   const [start, setStart] = useState(false);
-  const [gameOver, setGameOver] = useState(false);
+  const [gameStatus, setGameStatus] = useState('playing');
+
   // const [gameOpen, setGameOpen] = useState(false);
 
   const ref = useRef();
@@ -52,6 +53,7 @@ export default function App() {
     setY(spacedRandArray(50, ref.current.clientHeight - 50, 200, 5));
     setX(spacedRandArray(50, ref.current.clientWidth - 50, 200, 5));
     setStart(true);
+    setGameStatus('playing');
   };
 
   return (
@@ -63,14 +65,24 @@ export default function App() {
             Play
           </button>
         </div>
-      ) : !gameOver ? (
+      ) : gameStatus === 'playing' ? (
         <div className="center">
           {console.log(x, y)}
-          <Circle x={x} y={y} r={r} setGameOver={setGameOver} />
+          <Circle x={x} y={y} r={r} setGameStatus={setGameStatus} />
+        </div>
+      ) : gameStatus === 'lose' ? (
+        <div className="center" ref={ref}>
+          <h1>You Lose</h1>
+          <button className="btn btn-red" onClick={() => setxy()}>
+            Play Again
+          </button>
         </div>
       ) : (
-        <div className="center">
-          <h1>You Lose</h1>
+        <div className="center" ref={ref}>
+          <h1>You Win</h1>
+          <button className="btn btn-red" onClick={() => setxy()}>
+            Play Again
+          </button>
         </div>
       )}
     </div>
