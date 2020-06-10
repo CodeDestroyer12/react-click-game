@@ -1,28 +1,30 @@
 import React, { useState } from 'react';
+import Timer from './Timer';
 
-let a = 1;
 export default function Circle({ x, y, r, setGameStatus }) {
+  const [a, setA] = useState(1);
   const [gClass, setGClass] = useState();
+  const [timerOut, setTimerOut] = useState(false);
 
   const checkNum = (e, i) => {
     if (i + 1 === a) {
-      console.log(a);
-      a += 1;
+      setA(a + 1);
       setGClass(i + 1);
-      if (a === 6) {
-        a = 1;
+      if (a >= 5) {
+        setA(1);
         setGameStatus('win');
       }
     } else if (i + 1 <= a) {
-      console.log('already clicked', a);
+      console.log('YOU CLICKED THAT');
     } else {
-      console.log('you lose', a);
-      a = 1;
+      setA(1);
       setGameStatus('lose');
     }
   };
   return (
     <>
+      <span className="top-left">Level 1</span>
+      <Timer count={10} setGameStatus={setGameStatus} />
       <svg className="play-area">
         {x.map((x, i) => (
           <g className="ball" key={i} onClick={(e) => checkNum(e, i)}>
